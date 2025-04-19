@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Updates</title>
+    <style>
+        :root {
+            --primary-green: #00B07B;
+            --white-text: #FFFFFF;
+            --border-color: rgba(0, 176, 123, 0.48);
+            --padding-large: 16px;
+            --padding-small: 8px;
+            --gap-large: 16px;
+            --gap-medium: 8px;
+            --gap-small: 4px;
+            --border-radius: 8px;
+            --border-width: 1px;
+        }
+        
+        body {
+            background-color: #121212;
+            color: var(--white-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: var(--padding-large);
+        }
+        
+        header {
+            text-align: center;
+            padding: var(--padding-large);
+            margin-bottom: var(--gap-large);
+            border-bottom: var(--border-width) solid var(--border-color);
+        }
+        
+        h1 {
+            color: var(--white-text);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        h2 {
+            color: var(--primary-green);
+            margin-top: var(--gap-large);
+            font-size: 1.4rem;
+        }
+        
+        .city-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-large);
+            padding-bottom: var(--gap-large);
+        }
+        
+        .city-card {
+            background-color: rgba(35, 35, 35, 0.7);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: var(--border-width) solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .city-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .city-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .city-info {
+            padding: var(--padding-large);
+        }
+        
+        .city-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--gap-small);
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--gap-small);
+            margin-top: var(--gap-medium);
+        }
+        
+        .play-button {
+            background-color: var(--primary-green);
+            color: var(--white-text);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .play-button:hover {
+            background-color: #00965d;
+        }
+        
+        .weather-description {
+            margin-top: var(--gap-small);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .temperature {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: var(--gap-small);
+        }
+        
+        @media (min-width: 768px) {
+            .city-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--gap-large);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .city-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>India Weather Updates</h1>
+            <p>Real-time weather information for major cities</p>
+        </header>
+        
+        <div class="city-cards">
+            <div class="city-card">
+                <img src="https://fal.media/files/koala/I9dMDS2SPZAAn6Dx0Ro2E_d6caf4d5ca204eeabd9b5042f58e3326.jpg" alt="Mumbai Night Sky" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Mumbai</h2>
+                        <div class="temperature">32°C</div>
+                    </div>
+                    <div class="weather-description">Clear skies with warm temperatures</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('mumbai-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="mumbai-audio" src="https://fal.media/files/elephant/7rIGiSmRwLF2b-CPfzm1n_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/elephant/n1H9mg_CrjkoFgPIy3pQD_fcf4dca0dd804bf7b459e9302a28fafe.jpg" alt="Delhi Clear Sky" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Delhi</h2>
+                        <div class="temperature">35°C</div>
+                    </div>
+                    <div class="weather-description">Hot with clear, sunny conditions</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('delhi-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="delhi-audio" src="https://fal.media/files/tiger/D2O3qjljEJe1-lBb-rdXT_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/penguin/tmwWF_aNkMk28fQpZMsFR_20875a2fd7144bf08331bf8d84e8f173.jpg" alt="Bangalore Clouds" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Bangalore</h2>
+                        <div class="temperature">26°C</div>
+                    </div>
+                    <div class="weather-description">Partly cloudy with cool breeze</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('bangalore-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="bangalore-audio" src="https://fal.media/files/monkey/5INVc-UWWOPTyAJ4HZ0_P_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/zebra/iW1p-hPttn4h3h95QDR_k_2093282615be4c1db0adef57447c830c.jpg" alt="Hyderabad Skyline" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Hyderabad</h2>
+                        <div class="temperature">31°C</div>
+                    </div>
+                    <div class="weather-description">Mostly sunny with occasional clouds</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('hyderabad-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="hyderabad-audio" src="https://fal.media/files/tiger/y4UB5w8ch4PkwhIbrsuye_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/tiger/Ub0RG6zltYcoYRRGyVGQS_6c5a7294f47345b8bdbeb68ee2d81307.jpg" alt="Chennai Night Sky" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Chennai</h2>
+                        <div class="temperature">33°C</div>
+                    </div>
+                    <div class="weather-description">Humid with scattered clouds</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('chennai-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="chennai-audio" src="https://fal.media/files/rabbit/N7avdgR0CYQNcYIywZLEb_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/zebra/D3rpVSu9Yv2irVuoZPgiy_f66d7a35637d4f1b84120452f27195fc.jpg" alt="Kolkata Culture" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Kolkata</h2>
+                        <div class="temperature">30°C</div>
+                    </div>
+                    <div class="weather-description">Mild with light rain showers</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('kolkata-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="kolkata-audio" src="https://fal.media/files/panda/QQfVSuBGldkbdzz3OCYOI_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-card">
+                <img src="https://fal.media/files/elephant/qlaz4_ZfhFUHYmoZ_nBUQ_3d14fec857df4a0a95c8dacb5a5db962.jpg" alt="Ahmedabad Traditional" class="city-image">
+                <div class="city-info">
+                    <div class="city-name">
+                        <h2>Ahmedabad</h2>
+                        <div class="temperature">34°C</div>
+                    </div>
+                    <div class="weather-description">Hot and dry with clear skies</div>
+                    <div class="audio-controls">
+                        <button class="play-button" onclick="playAudio('ahmedabad-audio')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <span>Listen to weather update</span>
+                        <audio id="ahmedabad-audio" src="https://fal.media/files/penguin/acsC0D9LxJmfj_gv0iXcN_speech.mp3"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentlyPlaying = null;
+        
+        function playAudio(audioId) {
+            const audio = document.getElementById(audioId);
+            
+            // If something is currently playing, stop it
+            if (currentlyPlaying && currentlyPlaying !== audio) {
+                currentlyPlaying.pause();
+                currentlyPlaying.currentTime = 0;
+            }
+            
+            // If the clicked audio is already playing, pause it
+            if (audio.paused) {
+                audio.play();
+                currentlyPlaying = audio;
+            } else {
+                audio.pause();
+                currentlyPlaying = null;
+            }
+        }
+        
+        // Smooth scrolling for city cards
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.play-button')) {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
